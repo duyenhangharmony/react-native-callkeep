@@ -891,6 +891,17 @@ public class RNCallKeepModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void startBackgroundService() {
+        ReactApplicationContext reactContext = getContext();
+        Intent headlessIntent = new Intent(reactContext, RNCallKeepBackgroundMessagingService.class);
+        
+        ComponentName name = reactContext.startService(headlessIntent);
+        if (name != null) {
+            HeadlessJsTaskService.acquireWakeLockNow(reactContext);
+        }
+    }
+
+    @ReactMethod
     public void backToForeground() {
         Context context = getAppContext();
         if (context == null) {
