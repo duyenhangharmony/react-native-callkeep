@@ -340,6 +340,14 @@ class RNCallKeep {
     NativeModules.RNCallKeep.backToForeground();
   }
 
+  startBackgroundService() {
+    if (isIOS) {
+      return;
+    }
+
+    NativeModules.RNCallKeep.startBackgroundService();
+  }
+
   getInitialEvents() {
     return RNCallKeepModule.getInitialEvents();
   }
